@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FWI Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        input {
+            padding: 5px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>FWI Prediction</h1>
+    <form action="/predict" method="POST">
+        <div class="form-group">
+            <label for="temperature">Temperature:</label>
+            <input type="number" step="0.01" id="temperature" name="temperature" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rh">RH:</label>
+            <input type="number" step="0.01" id="rh" name="rh" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ws">WS:</label>
+            <input type="number" step="0.01" id="ws" name="ws" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rain">Rain:</label>
+            <input type="number" step="0.01" id="rain" name="rain" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ffmc">FFMC:</label>
+            <input type="number" step="0.01" id="ffmc" name="ffmc" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dmc">DMC:</label>
+            <input type="number" step="0.01" id="dmc" name="dmc" required>
+        </div>
+
+        <div class="form-group">
+            <label for="isi">ISI:</label>
+            <input type="number" step="0.01" id="isi" name="isi" required>
+        </div>
+
+        <div class="form-group">
+            <label for="classes">Classes:</label>
+            <select id="classes" name="classes" required>
+            <option value="1">Fire</option>
+            <option value="0">Not Fire</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="region">Region:</label>
+            <select id="region" name="region" required>
+                <option value="0">Bejaia Region</option>
+                <option value="1">Sidi-Bel Abbes Region</option>
+            </select>
+        </div>
+
+        <button type="submit">Predict</button>
+
+        {% if prediction_text %}
+        <div class="prediction">
+            <h3>{{ prediction_text }}</h3>
+        </div>
+        {% endif %}
+    </form>
+</body>
+</html>
